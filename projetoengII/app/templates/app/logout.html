@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Restaurante Saboroso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .message-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+
+        p {
+            margin: 20px 0;
+            color: #555;
+        }
+
+        a {
+            text-decoration: none;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <h1>Logout</h1>
+        <p>Você saiu com sucesso.</p>
+        <p><a href="{% url 'login' %}">Voltar para a página de login</a></p>
+        <p><a href="{% url 'index' %}">Voltar para a página inicial</a></p>
+    </div>
+</body>
+</html>

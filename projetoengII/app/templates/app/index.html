@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - Restaurante Saboroso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header img {
+            height: 60px;
+            vertical-align: middle;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .order-form, .available-dishes {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+        }
+
+        .order-form h2, .available-dishes h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        .dishes-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .dishes-list li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>=      RESTAURANTE       =</h1>
+        <p></p>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Menu</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="order-form">
+            <h2>Faça seu Pedido</h2>
+            <form method="POST" action="{% url 'submit_order' %}">
+                {% csrf_token %}
+                <label for="cliente">Cliente</label>
+                <select id="cliente" name="cliente" required>
+                    <option value="">Selecione o Cliente</option>
+                    {% for app_cliente in clientes %}
+                        <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="prato">Prato</label>
+                <select id="prato" name="prato" required>
+                    <option value="">Selecione o Prato</option>
+                    {% for prato in pratos %}
+                        <option value="{{ prato.id }}">{{ prato.nome }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="garcom">Garçom</label>
+                <select id="garcom" name="garcom" required>
+                    <option value="">Selecione o Garçom</option>
+                    {% for garcom in garcons %}
+                        <option value="{{ garcom.id }}">{{ garcom.nome }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Enviar Pedido</button>
+            </form>
+        </div>
+
+        <div class="available-dishes">
+            <h2>Pratos Disponíveis</h2>
+            <ul class="dishes-list">
+                {% for prato in pratos %}
+                    <li>{{ prato.nome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
